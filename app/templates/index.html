@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mobile App UI - Conflict Handling</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="topbar">
+  <strong class="file-name">Mobile App UI</strong>
+  <span id="viewOnlyBadge" class="view-only" hidden>view only</span>
+  <div class="spacer"></div>
+
+  <div class="undo-wrap">
+    <button id="undoBtn" class="icon-btn" aria-label="Undo my last change">&#8630;</button>
+    <button id="redoBtn" class="icon-btn" aria-label="Redo" disabled>&#8631;</button>
+    <div id="undoTip" class="tooltip" role="tooltip" hidden></div>
+  </div>
+
+  <button id="conflictPill" class="pill-warn" hidden></button>
+  <div id="avatars" class="avatars" aria-label="People in this file"></div>
+  <button class="btn primary" id="shareBtn">Share</button>
+</header>
+
+<div id="offlineBar" class="offline-bar" hidden>You're offline. Reconnect soon to merge changes.</div>
+
+<main class="workspace">
+  <section class="canvas" id="canvas" aria-label="Design canvas">
+    <div id="emptyState" class="empty-state" hidden>
+      <p>You're editing alone.<br>Invite teammates.</p>
+      <button class="btn primary" id="inviteBtn">Invite</button>
+    </div>
+
+    <div class="phone" id="phone">
+      <h2 class="phone-title">Welcome back</h2>
+      <div class="field">Email</div>
+      <div class="field">Password</div>
+      <div id="objects"></div>
+    </div>
+
+    <div id="cursors"></div>
+
+    <div id="editor" class="editor" hidden role="dialog" aria-label="Edit label">
+      <label for="labelInput">Button label</label>
+      <input id="labelInput" type="text" maxlength="24" autocomplete="off">
+      <div class="row">
+        <button class="btn primary" id="saveBtn">Save</button>
+        <button class="btn" id="cancelBtn">Cancel</button>
+      </div>
+      <button class="btn ghost" id="simBtn">Simulate: Alex edits this too</button>
+    </div>
+
+    <div id="banner" class="banner" hidden role="alert">
+      <div class="banner-head"><strong id="bannerTitle">Conflict</strong> &#9888;</div>
+      <p id="bannerText"></p>
+      <div class="versions">
+        <div><span>Yours:</span><b id="mineVal"></b></div>
+        <div><span id="theirsWho"></span><b id="theirsVal"></b></div>
+      </div>
+      <div class="row">
+        <button class="btn primary" data-choice="mine">Keep mine</button>
+        <button class="btn" data-choice="theirs">Keep theirs</button>
+        <button class="btn" data-choice="both">Keep both</button>
+      </div>
+    </div>
+  </section>
+
+  <aside class="panel" aria-label="History">
+    <h3>History</h3>
+    <div class="seg">
+      <button id="segMine" class="on">Mine</button>
+      <button id="segAll">Everyone</button>
+    </div>
+    <div id="skeleton" class="skeleton" hidden><i></i><i></i><i></i><i></i></div>
+    <ul id="history" class="history"></ul>
+  </aside>
+</main>
+
+<div id="toast" class="toast" role="status" aria-live="polite" hidden>
+  <span id="toastText"></span>
+  <button id="toastAction" class="toast-link" hidden></button>
+</div>
+
+<div class="demo">
+  <button class="btn primary small" id="demoBtn">Demo: edge states</button>
+  <div id="demoMenu" class="demo-menu" hidden>
+    <button data-demo="empty">Empty (alone)</button>
+    <button data-demo="loading">Loading</button>
+    <button data-demo="error">Error</button>
+    <button data-demo="offline">Offline</button>
+    <button data-demo="viewonly">No permission</button>
+    <button data-demo="reset">Reset all</button>
+  </div>
+</div>
+
+<script src="/static/script.js"></script>
+</body>
+</html>
