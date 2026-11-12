@@ -14,3 +14,5 @@ simultaneous edits by many users on the same object.
 - `figma/` – Figma source file
 - `screens/` – Exported screens
 - `report/` – Final report (PDF)
+- `Application/` – Interactive app
+ 
